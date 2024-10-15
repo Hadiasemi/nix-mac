@@ -24,7 +24,7 @@
       # Homebrew Setup
       homebrew = {
         enable = true;
-        brews = [];  # List of brew formulas (commented out in original)
+        brews = [];  
         casks = [
           "bitwarden" "docker" "google-chrome" "brave-browser" "synology-drive"
           "private-internet-access" "iterm2" "slack" "discord" "telegram" "signal"
