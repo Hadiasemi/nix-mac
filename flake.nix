@@ -88,6 +88,7 @@
         '';
       };
 
+      security.pam.enableSudoTouchIdAuth = true;
       # Enable Nix Daemon
       services.nix-daemon.enable = true;
 
