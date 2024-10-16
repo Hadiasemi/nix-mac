@@ -88,7 +88,7 @@ in {
     #!/bin/bash
     echo "Configuring Neovim..."
     if [ ! -d ~/.config/nvim ]; then
-      git clone https://github.com/Hadiasemi/hadi-kickstart.nvim.git ~/.config/nvim
+      ${pkgs.git}/bin/git clone https://github.com/Hadiasemi/hadi-kickstart.nvim.git ~/.config/nvim
     else
       echo "Neovim is already configured."
     fi
