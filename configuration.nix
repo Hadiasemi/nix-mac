@@ -52,11 +52,7 @@
         done
       '';
 
-      # Run chezmoi init
-      system.activationScripts.runChezMoiInit = ''
-        echo "Running chezmoi init --apply Hadiasemi..."
-        chezmoi init --apply Hadiasemi
-      '';
+
 
       # Zsh Configuration
       programs.zsh = {

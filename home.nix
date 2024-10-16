@@ -31,6 +31,7 @@ in {
     JAVA_HOME = "${pkgs.jdk}";
   };
 
+
   xdg.enable = true;
 
   # This value determines the Home Manager release that your configuration is
@@ -76,6 +77,22 @@ in {
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
+
+  # Run chezmoi init
+  home.activation.postActivation1 = ''
+    #!/bin/bash
+    echo "Running chezmoi init --apply Hadi Asemi..."
+ ${pkgs.chezmoi}/bin/chezmoi init --force --apply Hadiasemi
+  '';
+  home.activation.postActivation = ''
+    #!/bin/bash
+    echo "Configuring Neovim..."
+    if [ ! -d ~/.config/nvim ]; then
+      git clone https://github.com/Hadiasemi/hadi-kickstart.nvim.git ~/.config/nvim
+    else
+      echo "Neovim is already configured."
+    fi
+  '';
 
   services.gpg-agent.enable = true;
   # Home Manager can also manage your environment variables through
