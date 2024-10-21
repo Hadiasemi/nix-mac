@@ -10,13 +10,14 @@
       environment.systemPackages = with pkgs; [
         openjdk21 gnupg pcsclite pcsc-tools pinentry_mac mkalias go rustc cargo cmake
         nodejs bat ripgrep eza chezmoi zellij starship curl wget fzf gnupg htop openssl
-        sqlite tmux unzip vim neovim ranger yarn zsh zsh-autosuggestions ffmpeg
+        sqlite tmux unzip vim neovim ranger yarn zsh zsh-autosuggestions ffmpeg zsh-vi-mode
       ];
 
       # Homebrew Setup
       homebrew = {
         enable = true;
-        brews = [];  
+        brews = [
+    ];  
         casks = [
           "bitwarden" "docker" "google-chrome" "brave-browser" "synology-drive"
           "private-internet-access" "iterm2" "slack" "discord" "telegram" "signal"
@@ -60,6 +61,7 @@
         shellInit = ''
           # Zsh Autosuggestions
           source ${(pkgs.zsh-autosuggestions)}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
         '';
       };
 
@@ -76,6 +78,7 @@
           enable-ssh-support
         '';
       };
+      # services.skhd.enable = true;
 
       security.pam.enableSudoTouchIdAuth = true;
       # Enable Nix Daemon

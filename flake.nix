@@ -12,7 +12,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }: let
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager  }: let
     username ="cybersleuth";
   in {
     darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {

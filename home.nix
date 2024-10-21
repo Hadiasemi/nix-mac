@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, inputs, ...  }@args: let
+{ config, pkgs, lib, username, inputs,  ...  }@args: let
   mkHMdir = username: let
     homeDirPrefix = if pkgs.stdenv.hostPlatform.isDarwin then "Users" else "home";
     homeDirectory = "/${homeDirPrefix}/${username}";
@@ -19,10 +19,11 @@ in {
     options = "-d";
   };
 
+  
   home.shellAliases = {
-    autorepl = ''${pkgs.writeShellScript "autorepl" ''
-      exec nix repl --show-trace --expr '{ pkgs = import ${inputs.nixpkgsNV.outPath} { system = "${pkgs.system}"; config.allowUnfree = true; }; }'
-    ''}'';
+    # autorepl = ''${pkgs.writeShellScript "autorepl" ''
+    #   exec nix repl --show-trace --expr '{ pkgs = import ${inputs.nixpkgsNV.outPath} { system = "${pkgs.system}"; config.allowUnfree = true; }; }'
+    # ''}'';
     yolo = ''git add . && git commit -m "$(curl -fsSL https://whatthecommit.com/index.txt)" -m '(auto-msg whatthecommit.com)' -m "$(git status)" && git push'';
   };
   home.sessionVariables = {
@@ -55,6 +56,7 @@ in {
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    skhd
 
     (nerdfonts.override { fonts = [  "FiraMono" "Go-Mono" ]; })
 
@@ -75,8 +77,23 @@ in {
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
+    # ".config/skhd".source  = ./skhd;
     # '';
   };
+  # home.file.skhd = {
+  #       target = ".config/skhd/skhdrc";
+  #       text = ''
+  #       # Slack
+  #       cmd + s : open -a /Applications/Slack.app/Contents/MacOS/Slack
+  #       # Telegram
+  #       cmd + t : open -a /Applications/Telegram.app/Contents/MacOS/Telegram
+  #       # Telegram
+  #       cmd - o : open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian
+  #       # Show date
+  #       cmd - d : osascript ~/.config/skhd/applescripts/pop.scpt
+  #
+  #       '';
+  # };
 
   # Run chezmoi init
   home.activation.postActivation1 = ''
@@ -93,6 +110,7 @@ in {
       echo "Neovim is already configured."
     fi
   '';
+
 
   services.gpg-agent.enable = true;
   # Home Manager can also manage your environment variables through
