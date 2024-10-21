@@ -19,13 +19,14 @@ in {
     options = "-d";
   };
 
-  
-  home.shellAliases = {
-    # autorepl = ''${pkgs.writeShellScript "autorepl" ''
-    #   exec nix repl --show-trace --expr '{ pkgs = import ${inputs.nixpkgsNV.outPath} { system = "${pkgs.system}"; config.allowUnfree = true; }; }'
-    # ''}'';
-    yolo = ''git add . && git commit -m "$(curl -fsSL https://whatthecommit.com/index.txt)" -m '(auto-msg whatthecommit.com)' -m "$(git status)" && git push'';
+
+home.shellAliases = {
+    autorepl = ''${pkgs.writeShellScript "autorepl" ''
+       exec nix repl --show-trace --expr '{ pkgs = import ${inputs.nixpkgsNV.outPath} { system = "${pkgs.system}"; config.allowUnfree = true; }; }'
+     ''}'';
+    yolo=''git add . && git commit -m "$(curl -fsSL https://whatthecommit.com/index.txt)" -m '(auto-msg whatthecommit.com)' -m "$(git status)" && git push'';
   };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     # XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
@@ -127,4 +128,4 @@ in {
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-}
+ }
