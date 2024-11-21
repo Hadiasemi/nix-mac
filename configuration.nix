@@ -11,6 +11,7 @@
         openjdk21 gnupg pcsclite pcsc-tools pinentry_mac mkalias go rustc cargo cmake
         nodejs bat ripgrep eza chezmoi zellij starship curl wget fzf gnupg htop openssl
         sqlite tmux unzip vim neovim ranger yarn zsh zsh-autosuggestions ffmpeg zsh-vi-mode
+        mosh pipx openvpn
       ];
 
       # Homebrew Setup
